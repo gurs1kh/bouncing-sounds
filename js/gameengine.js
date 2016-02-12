@@ -60,8 +60,6 @@ GameEngine.prototype.startInput = function () {
 	var that = this;
 
 	this.ctx.canvas.addEventListener("keydown", function (e) {
-		// if (String.fromCharCode(e.which) === ' ') that.space = true;
-		// console.log(e);
 		that.keys[e.keyCode] = true;
 		if (e.keyCode != 116) e.preventDefault();
 	}, false);

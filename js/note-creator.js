@@ -1,13 +1,3 @@
-var notes2 = [0,2,4,7,9,12];
-var notes3 = [0,2,4,5,7,9,11,12];
-var notes4 = [0,2,4,6,7,9,11,12];
-var notes5 = [0,1,3,6,8,11,12];
-var notes6 = [0,1,4,6,7,8,11,12];
-var notes7 = [0,1,4,6,9,11,12];
-var notes8 = [0,2,4,6,8,10,12];
-var notes9 = [0,2,3,5,7,8,10,12];
-//http://theremin.music.uiowa.edu/MISpiano.html
-
 function NoteCreator(game, notes) {
 	this.game = game;
 	this.notes = [];

@@ -4,10 +4,6 @@ function Note(game, ctx, note, x, y, radius, color) {
 	this.color = color || "rgba(255,255,255,0)";
 	this.note = note;
 	this.ctx = ctx;
-	// this.synth = ctx.createOscillator();
-	// this.synth.frequency.value = Math.pow(2, ((45 + i) - 49) / 12) * 440;
-	// this.synth.type = "triangle";
-	// this.synth.start(0);
 }
 
 Note.prototype = new Entity();
