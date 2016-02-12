@@ -8,6 +8,8 @@ The color of a ball changes to the color of the note it hits, which is the color
 
 For custom scales, use values from -6 to 17 were 0 is C#.
 
+If you use too many balls, it may cause delays since it may end up waiting for the sounds to finish playing.
+
 The piano samples were taken from http://theremin.music.uiowa.edu/MISpiano.html
 
 See it in action at: http://gurs1kh.github.io/bouncing-sounds (note: due to current implementation, the sounds may be delayed. It is recommended that you download the project and run it locally)
