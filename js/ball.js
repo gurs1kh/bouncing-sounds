@@ -1,5 +1,3 @@
-
-
 function Ball(game, radius, x, y) {
 	x = x || 0;
 	y = y || 0;
@@ -23,9 +21,9 @@ function Ball(game, radius, x, y) {
 		 * (Math.random() * 5 + 3)
 	};
 	
-	this.color = "rgb(" + Math.round(Math.random() * 255) + ", "
-						+ Math.round(Math.random() * 255) + ", "
-						+ Math.round(Math.random() * 255) + ")";
+	this.color = "black"//"rgb(" + Math.round(Math.random() * 255) + ", "
+						//+ Math.round(Math.random() * 255) + ", "
+						//+ Math.round(Math.random() * 255) + ")";
 }
 
 Ball.prototype = new Entity();
@@ -64,10 +62,11 @@ Ball.prototype.update = function() {
 		this.velocity.y -= normal.y;
 		
 		var ball = this;
-		this.game.notes.filter(function(d) {
+		var note = this.game.notes.filter(function(d) {
 			return ball.collide(d);
-		})[0].play();
-		
+		})[0];
+		note.play();
+		this.color = note.color;
 	}
 	
 	//ball collision

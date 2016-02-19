@@ -6,32 +6,43 @@ function startController(game, num, size) {
 	var customScaleInput = document.getElementById("customScale");
 	var updateBtn = document.getElementById("update");
 	var clearBtn = document.getElementById("clear");
+	numChanged = sizeChanged = scaleChanged = false;
 	
 	numInput.value = num;
 	sizeInput.value = size;
 	
 	updateBtn.onclick = function() {
-		var scale = scaleInput.value;
-		if (scale == "custom") {
-			scale = customScaleInput.value;
-		}
-		var notes = scale.split(",");
-		game.notes.forEach(function(d) { d.removeFromWorld = true; });
-		game.noteCreator.removeFromWorld = true;
-		game.notes = [];
+		if (scaleChanged) {
+			var scale = scaleInput.value;
+			if (scale == "custom") {
+				scale = customScaleInput.value;
+			}
+			var notes = scale.split(",");
+			game.notes.forEach(function(d) { d.removeFromWorld = true; });
+			game.noteCreator.removeFromWorld = true;
+			game.notes = [];
 
-		game.noteCreator = new NoteCreator(game, notes);
-		game.notes = game.noteCreator.notes;
-		game.addEntity(game.noteCreator);
-		
-		game.balls.forEach(function(d){ d.removeFromWorld = true; });
-		game.balls = [];
-		num = parseInt(numInput.value);
-		for (var i = 0; i < num; i++) {
-			var ball = new Ball(game, parseInt(sizeInput.value));
-			game.balls.push(ball);
-			game.addEntity(ball);
+			game.noteCreator = new NoteCreator(game, notes);
+			game.notes = game.noteCreator.notes;
+			game.addEntity(game.noteCreator);
 		}
+		if (numChanged) {
+			game.balls.forEach(function(d){ d.removeFromWorld = true; });
+			game.balls = [];
+			num = parseInt(numInput.value);
+			for (var i = 0; i < num; i++) {
+				var ball = new Ball(game, parseInt(sizeInput.value));
+				game.balls.push(ball);
+				game.addEntity(ball);
+			}
+		}
+		
+		if (sizeChanged) {
+			for (var i = 0; i < game.balls.length; i++) {
+				game.balls[i].radius = parseInt(sizeInput.value);
+			}
+		}
+		numChanged = sizeChanged = scaleChanged = false;
 	}
 	
 	clearBtn.onclick = function() {
@@ -39,13 +50,23 @@ function startController(game, num, size) {
 		updateBtn.onclick();
 	}
 	
-	scaleInput.onchange = function() {
+	numInput.onchange = function() {
+		numChanged = true;
+	}
+	
+	sizeInput.onchange = function() {
+		sizeChanged = true;
+	}
+	
+	scaleInput.onchange = 
+	customScaleInput.onchange = function() {
 		var scale = scaleInput.value;
 		if (scale == "custom") {
 			customScaleInput.hidden = false;
 		} else {
 			customScaleInput.hidden = true;
 		}
+		scaleChanged = true;
 	}
 	
 	var line = game.line;
@@ -58,8 +79,8 @@ function startController(game, num, size) {
 	
 	canvas.onmousemove = function(e) {
 		if (mousedown) {
-		line.endX = e.layerX;
-		line.endY = e.layerY;
+			line.endX = e.layerX;
+			line.endY = e.layerY;
 		}
 	}
 	
