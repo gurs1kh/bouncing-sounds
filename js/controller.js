@@ -8,8 +8,6 @@ function startController(game, num, size) {
 	var clearBtn = document.getElementById("clear");
 	numChanged = sizeChanged = scaleChanged = false;
 	
-	numInput.value = num;
-	sizeInput.value = size;
 	
 	updateBtn.onclick = function() {
 		if (scaleChanged) {
@@ -47,6 +45,7 @@ function startController(game, num, size) {
 	
 	clearBtn.onclick = function() {
 		numInput.value = 0;
+		numChanged = true;
 		updateBtn.onclick();
 	}
 	
