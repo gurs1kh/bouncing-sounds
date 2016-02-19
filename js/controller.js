@@ -73,8 +73,8 @@ function startController(game, num, size) {
 	mousedown = false;
 	canvas.onmousedown = function(e) {
 		mousedown = true;
-		line.startX = e.layerX;
-		line.startY = e.layerY;
+		line.startX = line.endX = e.layerX;
+		line.startY = line.endY = e.layerY;
 	};
 	
 	canvas.onmousemove = function(e) {
