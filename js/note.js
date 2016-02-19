@@ -1,7 +1,16 @@
-function Note(game, ctx, note, x, y, radius, color) {
-	Entity.call(this, game, x, y);
-	this.radius = radius;
+function Note(game, ctx, note, circle, n, i, color) {
+	Entity.call(this, game, 0, 0);
+	var radius = circle.radius;
+	this.x = (1/(n*n)+1) * radius * Math.cos(i * 2 * Math.PI / n - Math.PI / 2),
+	this.y = (1/(n*n)+1) * radius * Math.sin(i * 2 * Math.PI / n - Math.PI / 2),
+	this.radius = Math.PI * radius / n;
+	this.circle = circle;
+	this.n = n;
+	this.i = i;
 	this.color = color || "rgba(255,255,255,0)";
+	this.color = "rgb(" + Math.round(Math.random() * 255) + ", "
+						+ Math.round(Math.random() * 255) + ", "
+						+ Math.round(Math.random() * 255) + ")";
 	this.note = note;
 	this.ctx = ctx;
 }
@@ -10,12 +19,14 @@ Note.prototype = new Entity();
 Note.prototype.constructor = Note;
 
 Note.prototype.draw = function(ctx) {
+	ctx.strokeStyle = this.color;
+	ctx.lineWidth = 10;
+	var circle = this.circle;
 	ctx.beginPath();
-	ctx.fillStyle = this.color;
-	ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, true);
-	ctx.closePath();
+	ctx.arc(circle.x, circle.y, circle.radius,
+			2 * Math.PI / this.n * (this.i - 1),
+			2 * Math.PI / this.n * this.i, false);
 	ctx.stroke();
-	ctx.fill();
 }
 
 Note.prototype.play = function() {

@@ -13,12 +13,12 @@ window.onload = function() {
 	
     var game = new GameEngine();
 	
-	var radius = Math.min(canvas.height, canvas.width) / 2;
+	var radius = Math.min(canvas.height, canvas.width) / 2 - 10;
 	var circle = new Circle(game, radius);
 	game.addEntity(circle);
 	game.circle = circle;
 	
-	var noteCreator = new NoteCreator(game, "0,2,4,5,7,9,11,12".split(","));
+	var noteCreator = new NoteCreator(game, document.getElementById("scale").value.split(","));
 	game.noteCreator = noteCreator;
 	game.notes = noteCreator.notes;
 	game.addEntity(noteCreator);

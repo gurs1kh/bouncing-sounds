@@ -5,10 +5,10 @@ function NoteCreator(game, notes) {
 	this.ctx = new AudioContext();
 	n = notes.length;
 	for (var i = 0; i < n; i++) {
-		var note = new Note(game, this.ctx, parseInt(notes[i]),
-					(1/(n*n)+1) * radius * Math.cos(i * 2 * Math.PI / n - Math.PI / 2),
-					(1/(n*n)+1) * radius * Math.sin(i * 2 * Math.PI / n - Math.PI / 2),
-					Math.PI * radius / n);
+		var note = new Note(game, this.ctx,
+							parseInt(notes[i]),
+							this.game.circle,
+							n, i);
 		this.notes.push(note);
 	}
 }
