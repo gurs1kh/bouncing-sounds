@@ -24,8 +24,8 @@ Note.prototype.draw = function(ctx) {
 	var circle = this.circle;
 	ctx.beginPath();
 	ctx.arc(circle.x, circle.y, circle.radius,
-			2 * Math.PI / this.n * (this.i - 1),
-			2 * Math.PI / this.n * this.i, false);
+			2 * Math.PI / this.n * this.i - Math.PI / 2 - Math.PI / this.n,
+			2 * Math.PI / this.n * this.i - Math.PI / 2 + Math.PI / this.n, false);
 	ctx.stroke();
 }
 

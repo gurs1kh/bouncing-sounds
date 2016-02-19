@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>Bouncing Sound</title>
     <script type="text/javascript" src="js/gameengine.js"></script>
-    <script type="text/javascript" src="js/assetmanager.js"></script>
     <script type="text/javascript" src="js/circle.js"></script>
     <script type="text/javascript" src="js/note.js"></script>
     <script type="text/javascript" src="js/note-creator.js"></script>
     <script type="text/javascript" src="js/ball.js"></script>
+    <script type="text/javascript" src="js/line.js"></script>
     <script type="text/javascript" src="js/controller.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 	
@@ -19,10 +19,10 @@
     <canvas id="gameWorld" tabindex="1" width="500" height="500" style="border: 1px solid black;" autofocus></canvas>
 	<div id="controller">
 		<label for="ballNum"># of Balls</label>
-		<input type="number" id="ballNum" min=1 max=7 />
+		<input type="number" id="ballNum" min=1 max=7 value=5 />
 		<br />
 		<label for="ballSize">Ball Size</label>
-		<input type="range" id="ballSize" min=1 max=50 />
+		<input type="range" id="ballSize" min=1 max=50 value=10 />
 		<br />
 		<select id="scale">
 			<option value="0,2,4,5,7,9,11,12">Major Scale</option>
@@ -45,6 +45,7 @@
 		
 		<br />
 		<button id="update">Update</button>
+		<button id="clear">Clear</button>
 	</div>
 </body>
 </html>

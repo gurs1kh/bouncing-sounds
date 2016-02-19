@@ -4,15 +4,18 @@ window.onload = function() {
     var ctx = canvas.getContext('2d');
 	ctx.translate(canvas.width / 2, canvas.height / 2);
 	
-	var ballNum = 5;
-	var ballRadius = 10;
+	var ballNum = parseInt(document.getElementById("ballNum").value);
+	var ballRadius = parseInt(document.getElementById("ballSize").value);
 	
-    var game = new GameEngine();
+	var game = new GameEngine();
 	
 	var radius = Math.min(canvas.height, canvas.width) / 2 - 10;
 	var circle = new Circle(game, radius);
 	game.addEntity(circle);
 	game.circle = circle;
+	
+	game.line = new Line(game);
+	game.addEntity(game.line);
 	
 	var noteCreator = new NoteCreator(game, document.getElementById("scale").value.split(","));
 	game.noteCreator = noteCreator;
