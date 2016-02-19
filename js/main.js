@@ -1,8 +1,4 @@
 // the "main" code begins here
-
-// var ASSET_MANAGER = new AssetManager();
-
-// ASSET_MANAGER.downloadAll(function () {
 window.onload = function() {
     var canvas = document.getElementById('gameWorld');
     var ctx = canvas.getContext('2d');
@@ -32,8 +28,6 @@ window.onload = function() {
     
 	game.init(ctx);
     game.start();
-	// console.log(game);
 	
 	startController(game, ballNum, ballRadius);
 }
-// });
