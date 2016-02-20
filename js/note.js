@@ -3,6 +3,8 @@ function Note(game, ctx, note, circle, n, i, color) {
 	var radius = circle.radius;
 	this.x = (1/(n*n)+1) * radius * Math.cos(i * 2 * Math.PI / n - Math.PI / 2),
 	this.y = (1/(n*n)+1) * radius * Math.sin(i * 2 * Math.PI / n - Math.PI / 2),
+	this.textX =  0.9 * radius * Math.cos(i * 2 * Math.PI / n - Math.PI / 2);
+	this.textY =  0.9 * radius * Math.sin(i * 2 * Math.PI / n - Math.PI / 2);
 	this.radius = Math.PI * radius / n;
 	this.circle = circle;
 	this.n = n;
@@ -35,39 +37,22 @@ Note.prototype.draw = function(ctx) {
 			2 * Math.PI / this.n * this.i - Math.PI / 2 - Math.PI / this.n - Math.PI / 1440,
 			2 * Math.PI / this.n * this.i - Math.PI / 2 - Math.PI / this.n + Math.PI / 1440, false);
 	ctx.stroke();
+	
+	ctx.font = "16pt Arial, sans-serif";
+	ctx.fillStyle = "black";
+	ctx.textAlign = "center";
+	ctx.textBaseline = "middle";
+	ctx.fillText(this.note, this.textX, this.textY);
 }
 
 Note.prototype.play = function() {
-	new Audio("piano/" + piano[this.note + 6]).play();
+	new Audio("piano/Piano.mf." + piano[this.note + 6] + ".mp3").play();
 }
 
 var piano = [
-"Piano.mf.G3.mp3",
-"Piano.mf.Ab3.mp3",
-"Piano.mf.A3.mp3",
-"Piano.mf.Bb3.mp3",
-"Piano.mf.B3.mp3",
-"Piano.mf.C4.mp3",
-"Piano.mf.Db4.mp3",
-"Piano.mf.D4.mp3",
-"Piano.mf.Eb4.mp3",
-"Piano.mf.E4.mp3",
-"Piano.mf.F4.mp3",
-"Piano.mf.Gb4.mp3",
-"Piano.mf.G4.mp3",
-"Piano.mf.Ab4.mp3",
-"Piano.mf.A4.mp3",
-"Piano.mf.Bb4.mp3",
-"Piano.mf.B4.mp3",
-"Piano.mf.C5.mp3",
-"Piano.mf.Db5.mp3",
-"Piano.mf.D5.mp3",
-"Piano.mf.Eb5.mp3",
-"Piano.mf.E5.mp3",
-"Piano.mf.F5.mp3",
-"Piano.mf.Gb5.mp3",
-"Piano.mf.G5.mp3",
-];
+"G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4",
+"E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5",
+"Db5", "D5", "Eb5", "E5", "F5", "Gb5", "G5"];
 
 //adapted from http://stackoverflow.com/questions/1472514/convert-light-frequency-to-rgb
 function waveLengthToRGB(wavelength){
