@@ -10,4 +10,4 @@ For custom scales, use values from -6 to 17 were 0 is C#.
 
 The piano samples were taken from http://theremin.music.uiowa.edu/MISpiano.html
 
-See it in action at: http://gurs1kh.github.io/bouncing-sounds
+See it in action at: http://gurs1kh.github.io/bouncing-sounds (note: due to current implementation, the sounds may be delayed. It is recommended that you download the project and run it locally)
